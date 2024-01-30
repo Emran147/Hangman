@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Score from './components/Score';
+import Solution from './components/Solution';
+import Letters from './components/Letters';
+import EndGame from './components/EndGame';
 import './App.css';
 
 function App() {
+  const solution = { word: 'TAXI', hint: 'cab' };
+  const [score, setScore] = useState(100);
+  const [letterStatus, setLetterStatus] = useState(generateLetterStatuses());
+
+  const updateScore = (result) => {
+    setScore(score + (result ? 5 : -20));
+  };
+
+  const selectLetter = (letter) => {
+    setLetterStatus({ ...letterStatus, [letter]: true });
+    updateScore(solution.word.includes(letter));
+  };
+
+  const isWordGuessed = solution.word.split('').every(letter => letterStatus[letter]);
+  const isGameOver = score <= 0 || isWordGuessed;
+
+  function resetGame() {
+    setScore(100);
+    setLetterStatus(generateLetterStatuses());
+  };
+
+  function generateLetterStatuses() {
+    let letterStatus = {};
+    for (let i = 65; i < 91; i++) {
+      letterStatus[String.fromCharCode(i)] = false;
+    }
+    return letterStatus;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!isGameOver && (
+        <div className='main-game'>
+          <Score score={score}/>
+          <Solution letterStatus={letterStatus} solution={solution} />
+          <Letters letterStatus={letterStatus} selectLetter={selectLetter} />
+        </div>
+      )}
+      {isGameOver && (
+        <EndGame isGameOver={isGameOver} isWordGuessed={isWordGuessed} secretWord={solution.word} onReset={resetGame} />
+      )}
     </div>
   );
 }

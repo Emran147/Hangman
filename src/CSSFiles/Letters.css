@@ -1,0 +1,8 @@
+.chosen{
+    text-decoration: line-through;
+    display: inline;
+}
+.notchosen{
+    display: inline;
+
+}
