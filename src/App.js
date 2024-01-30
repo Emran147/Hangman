@@ -6,7 +6,12 @@ import EndGame from './components/EndGame';
 import './App.css';
 
 function App() {
-  const solution = { word: 'TAXI', hint: 'cab' };
+  const solutions = [ { word: 'TAXI', hint: 'cab' } , { word: 'CAT', hint: 'mewooooooo' }]
+  const getRandomSolution = function() {
+    const randomIndex = Math.floor(Math.random() * solutions.length);
+    return solutions[randomIndex];
+  };
+  const [solution,setSolution] = useState(getRandomSolution())
   const [score, setScore] = useState(100);
   const [letterStatus, setLetterStatus] = useState(generateLetterStatuses());
 
@@ -24,7 +29,8 @@ function App() {
 
   function resetGame() {
     setScore(100);
-    setLetterStatus(generateLetterStatuses());
+    setSolution(getRandomSolution())
+    setLetterStatus(generateLetterStatuses())
   };
 
   function generateLetterStatuses() {

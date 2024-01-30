@@ -1,5 +1,5 @@
 import React from 'react';
-import '../CSSFiles/Score.css'; 
+import '../CSSFiles/Letters.css'; 
 
 export default function Score({score}) {
   let scoreClass = '';

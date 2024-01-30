@@ -1,8 +1,109 @@
-.chosen{
-    text-decoration: line-through;
-    display: inline;
+:root {
+    /* Define your color scheme here */
+    --primary-color: navy;
+    --secondary-color: blue;
+    --border-color: black;
+    --shadow-color: rgb(0, 20, 8);
 }
-.notchosen{
-    display: inline;
 
+.letters-container {
+    margin-top: 5%;
+    background-color: var(--primary-color);
+    height: fit-content;
+    width: 50%;
+    margin-left: 25%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.chosen, .notchosen {
+    font-size: 1em;
+    margin: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.chosen {
+    text-decoration: line-through; /* Adds a line through chosen letters */
+    pointer-events: none; /* Makes the element unclickable */
+
+}
+
+.one-letter-div {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 2px 2px 4px var(--shadow-color);
+    box-sizing: border-box;
+    width: 25px;
+    height: 30px;
+    transition: transform 0.5s ease; /* Smooth transition for hover effect */
+    display: flex; /* Set as flex container */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.one-letter-div:hover {
+    transform: scale(1.1); /* Enlarge letter on hover */
+}
+.letter-span {
+    display: block; /* Makes the span a block-level element */
+    width: 100%; /* Fills the full width of its parent */
+    height: 100%; /* Fills the full height of its parent */
+    text-align: center; /* Center the text horizontally */
+}
+
+
+
+.high-score, .medium-score, .low-score {
+    height: 20%;
+    justify-content: center;
+}
+
+.high-score {
+    color: green; /* Style for high scores */
+}
+
+.medium-score {
+    color: orange; /* Style for medium scores */
+}
+
+.low-score {
+    color: red; /* Style for low scores */
+}
+
+.solution-area {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+    margin-bottom: 20px; /* Adds space below the solution area */
+}
+
+.solution-hint {
+    display: block; /* Ensures the hint takes its own line */
+    position: absolute;
+    font-weight: bold;
+    margin-top: 7%; /* Adds space above the hint */
+    color: #eee;
+}
+
+.end-game{
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .letters-container {
+        width: 80%;
+        margin-left: 10%; /* Adjust for smaller screens */
+    }
+
+    .chosen, .notchosen {
+        font-size: 0.8em; /* Smaller font for smaller screens */
+    }
 }

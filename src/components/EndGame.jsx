@@ -1,3 +1,4 @@
+import '../CSSFiles/Letters.css'
 export default function EndGame({ isGameOver, isWordGuessed, secretWord, onReset }) {
     if (!isGameOver) {
       return null;
